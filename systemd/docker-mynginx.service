@@ -1,0 +1,12 @@
+[Unit]
+Description=Nginx container
+Requires=docker.service
+After=docker.service docker-flask.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a mynginx
+ExecStop=/usr/bin/docker stop -t 2 mynginx
+
+[Install]
+WantedBy=default.target
