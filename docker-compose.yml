@@ -1,0 +1,31 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+     - "80:80"
+
+  mynginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+     - "8080:80"
+    links:
+     - "uwsgi:flask"
+  uwsgi:
+    build:
+      context: .
+      dockerfile: uwsgi/Dockerfile
+
+
+  uwsgi_redis:
+    build:
+      context: .
+      dockerfile: uwsgi_redis/Dockerfile
+    ports:
+     - "8000:8000"
+    links:
+     - "redis"
+  redis:
+    image: "redis:alpine"
