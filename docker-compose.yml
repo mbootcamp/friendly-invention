@@ -1,11 +1,13 @@
 version: '2'
 services:
   web:
+    container_name: web
     build: .
     ports:
      - "80:80"
 
   mynginx:
+    container_name: mynginx
     build:
       context: .
       dockerfile: nginx/Dockerfile
@@ -14,6 +16,7 @@ services:
     links:
      - "uwsgi:flask"
   uwsgi:
+    container_name: flask
     build:
       context: .
       dockerfile: uwsgi/Dockerfile
