@@ -1,0 +1,10 @@
+find . -iname '*.py' |
+  while read file
+  do
+    cat -n $file |
+     grep recurs |
+       while read line
+       do
+         echo $file:$line | sed 's/ /:/'
+       done
+  done
