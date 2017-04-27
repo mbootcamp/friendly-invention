@@ -5,4 +5,4 @@ sudo apt-get install python-pip -y
 sudo pip install docker-compose
 sudo cp systemd/* /etc/systemd/system
 sudo usermod -aG docker $USER
-newgrep docker
+newgrp docker
