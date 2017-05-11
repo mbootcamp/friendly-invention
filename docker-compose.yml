@@ -23,6 +23,7 @@ services:
 
 
   uwsgi_redis:
+    container_name: uwsgi_redis
     build:
       context: .
       dockerfile: uwsgi_redis/Dockerfile
