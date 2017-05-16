@@ -12,15 +12,24 @@ def fetch():
              {"url": "http://flask.pocoo.org/", "display": "FLAsk"}
             ]'''
 
+def _get_post(post_id):
+    # TODO: fetch from database
+    return {'content': 'content '*24, 'title': 'title '*3}
+
 # TODO: homework
-@app.route('/post/<number:int>')
-def post(number):
-    return 'TODO: return the post'
+@app.route('/post/<int:post_id>')
+def post(post_id):
+    post = _get_post(post_id)
+    return render_template('post.html', post=post)
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
     return render_template('hello.html', name=name, footer="foot")
+
+@application.route("/about")
+def about():
+    return render_template('about.html')
 
 @application.route("/")
 def index():
