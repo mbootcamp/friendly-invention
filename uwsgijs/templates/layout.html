@@ -137,11 +137,11 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li id="blog_li">
                         <a href="/"><i class="fa fa-fw fa-dashboard"></i> Blog</a>
                     </li>
-                    <li>
-                        <a href="/forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    <li id="post_li">
+                        <a href="/post"><i class="fa fa-fw fa-edit"></i> Post</a>
                     </li>
                 </ul>
             </div>
@@ -191,32 +191,10 @@
 
     
     <script>
-        var xmlhttp = new XMLHttpRequest();
-        var url = "blog_list.json";
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var myArr = JSON.parse(this.responseText);
-                myFunction(myArr);
-            }
-        };
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-
-        function myFunction(arr) {
-            var out = "";
-            var i;
-            for(i = 0; i < arr.length; i++) {
-                out += '<a href="' + arr[i].url + '"><li class="list-group-item">' + 
-                arr[i].display + '</li></a>';
-            }
-            out += "";
-            document.getElementById("blog_posts").innerHTML = out;
-        }
-//         myFunction([
-//              {"url": "http://www.ucla.edu", "display": "UCLA"},
-//              {"url": "https://www.kernel.org", "display": "KERNEL"},
-//              {"url": "http://flask.pocoo.org/", "display": "FLAsk"}
-//             ]);
+        {% block js_embed %}
+	  // TODO: skip in template if no nav_name
+	  $('#{{ nav_name }}_li').addClass("active");
+        {% endblock %}
     </script>
 
     <div id="footer">

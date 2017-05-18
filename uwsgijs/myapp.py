@@ -31,9 +31,13 @@ def hello(name=None):
 def about():
     return render_template('about.html')
 
+@application.route("/post")
+def new_post():
+    return render_template('forms.html', nav_name="post")
+
 @application.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('index.html', nav_name="blog")
 
 @application.route("/clear")
 def blank():
